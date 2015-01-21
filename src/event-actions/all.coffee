@@ -82,7 +82,7 @@ module.exports =
         msg += data.commits.map((commit)-> commit.message).join("\n")
 
       if data.compare
-        msg += "\nSee them here #{data.compare}"
+        msg += "\n#{data.compare}"
 
       # if all these data elements are missing, consider you may have created a
       # github webhook that is delivering payloads of the wrong type, such as
@@ -90,7 +90,7 @@ module.exports =
       callback msg
 
   commit_comment: (robot, data, callback) ->
-    callback "#{data.comment.user.login} commented on a commit, see it here: #{data.comment.html_url}"
+    callback "#{data.comment.user.login} commented on a commit: #{data.comment.html_url}"
 
   member: (robot, data, callback) ->
     callback "#{data.member.login} has been #{data.action} as a contributor!"
@@ -113,7 +113,7 @@ module.exports =
     callback "The #{data.team.name} team now has #{data.team.permission} access to #{data.repository.full_name}"
 
   release: (robot, data, callback) ->
-    callback "#{data.release.name} has been #{data.action}! See it here: #{data.release.html_url}"
+    callback "#{data.release.name} has been #{data.action}! #{data.release.html_url}"
 
   page_build: (robot, data, callback) ->
     build = data.build
